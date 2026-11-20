@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>한 끼의 가격 — The Price of a Meal</title>
+    <meta
+      name="description"
+      content="음식을 선택하고 재료비부터 숨은 비용까지, 한 끼의 가격을 알아보세요."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <button id="desktop" class="desktop" aria-label="The Price of a Meal 열기">
+      <span class="folder"
+        ><img
+          src="images/launcher-cutlery.png"
+          alt=""
+          width="47"
+          height="48" /></span
+      ><span>The Price of a Meal</span>
+    </button>
+    <section id="window" class="window" hidden aria-label="The Price of a Meal">
+      <main id="main" tabindex="-1"></main>
+    </section>
+    <!-- 공통: 선택한 메뉴, 예상 가격, 식사 방식 -->
+    <template id="choice-context">
+      <div class="choice-context">
+        <div class="chosen-meal" hidden>
+          <span class="meal-art" role="img"></span>
+          <b data-value="food"></b>
+        </div>
+        <div class="summary" hidden>
+          <span class="badge">선택한 음식 <strong data-value="food"></strong></span>
+          <span class="badge">예상 가격 <strong data-value="price"></strong></span>
+          <span class="badge" data-method-summary hidden>
+            선택한 방식 <strong data-value="method"></strong>
+          </span>
+        </div>
+      </div>
+    </template>
+
+    <!-- 1. 프로젝트 소개 -->
+    <template id="scene-0">
+      <div class="intro">
+        <div class="intro-copy">
+          <h1>한 끼의 가격은<br />어떻게 만들어질까<span class="mint-text">?</span></h1>
+          <p>같은 메뉴, 다른 선택.<br />음식에 담긴 돈과 시간의 이야기를 만나보세요.</p>
+          <button class="action" data-next="1">나의 한 끼 알아보기 ↗</button>
+        </div>
+        <div class="hero-meal">
+          <span class="meal-art art-0" role="img" aria-label="김치볶음밥 로우폴리 3D 일러스트"></span>
+        </div>
+      </div>
+    </template>
+
+    <!-- 2. 메뉴 선택 -->
+    <template id="scene-1">
+      <h1>오늘은 무엇을 먹을까?</h1>
+      <p>오늘 먹고 싶은 메뉴를 선택해 주세요.</p>
+      <div class="options food-options">
+        <button class="option food" data-food="0" aria-pressed="false">
+          <span class="meal-art art-0" role="img" aria-label="김치볶음밥 로우폴리 3D 일러스트"></span>
+          <span class="food-copy"><strong>김치볶음밥</strong></span>
+          <span class="round-arrow">↗</span>
+        </button>
+        <button class="option food" data-food="1" aria-pressed="false">
+          <span class="meal-art art-1" role="img" aria-label="크림 파스타 로우폴리 3D 일러스트"></span>
+          <span class="food-copy"><strong>크림 파스타</strong></span>
+          <span class="round-arrow">↗</span>
+        </button>
+        <button class="option food" data-food="2" aria-pressed="false">
+          <span class="meal-art art-2" role="img" aria-label="돈까스 로우폴리 3D 일러스트"></span>
+          <span class="food-copy"><strong>돈까스</strong></span>
+          <span class="round-arrow">↗</span>
+        </button>
+      </div>
+    </template>
+
+    <!-- 3. 예상 가격 선택 -->
+    <template id="scene-2">
+      <h1>이 음식은 얼마일 것 같나요?</h1>
+      <p>예상 가격을 골라 보세요.</p>
+      <div class="options price-options">
+        <button class="option" data-price="0" aria-pressed="false">
+          <small>01 / PRICE RANGE</small>
+          <strong>₩5,000 이하</strong>
+          <span class="select-dot"></span>
+        </button>
+        <button class="option" data-price="1" aria-pressed="false">
+          <small>02 / PRICE RANGE</small>
+          <strong>₩5,000~₩10,000</strong>
+          <span class="select-dot"></span>
+        </button>
+        <button class="option" data-price="2" aria-pressed="false">
+          <small>03 / PRICE RANGE</small>
+          <strong>₩10,000 이상</strong>
+          <span class="select-dot"></span>
+        </button>
+      </div>
+      <button class="action" data-next="3" disabled>선택하기</button>
+    </template>
+
+    <!-- 4. 식사 방식 선택 -->
+    <template id="scene-3">
+      <h1>어떤 방식으로 먹을까요?</h1>
+      <p>식사 방식을 선택해 보세요.</p>
+      <div class="options method-options">
+        <button class="option" data-method="0" aria-pressed="false">
+          <span class="method-icon method-art method-art-0" aria-hidden="true"></span>
+          <strong>직접 만들기</strong>
+        </button>
+        <button class="option" data-method="1" aria-pressed="false">
+          <span class="method-icon method-art method-art-1" aria-hidden="true"></span>
+          <strong>편의점</strong>
+        </button>
+        <button class="option" data-method="2" aria-pressed="false">
+          <span class="method-icon method-art method-art-2" aria-hidden="true"></span>
+          <strong>배달</strong>
+        </button>
+        <button class="option" data-method="3" aria-pressed="false">
+          <span class="method-icon method-art method-art-3" aria-hidden="true"></span>
+          <strong>식당</strong>
+        </button>
+      </div>
+      <button class="action" data-next="4" disabled>선택하기</button>
+    </template>
+
+    <!-- 5. 준비 과정과 비용 내역 -->
+    <template id="scene-4">
+      <h1>이 한 끼는 어떻게 준비될까요?</h1>
+      <div class="panel ingredients">
+        <div class="row">
+          <span data-value="total-label"></span>
+          <b data-value="total"></b>
+        </div>
+        <p data-value="process"></p>
+      </div>
+      <div class="foot">
+        <button class="action" data-next="5">한 끼 영수증 보기</button>
+      </div>
+    </template>
+
+    <!-- 6. 나의 한 끼 영수증 -->
+    <template id="scene-5">
+      <h1>나의 한 끼 영수증</h1>
+      <p><span data-value="food"></span> · <span data-value="method"></span></p>
+      <div class="panel">
+        <div class="row">
+          <span data-value="total-label"></span>
+          <b data-value="total"></b>
+        </div>
+        <div class="row">
+          <span>준비부터 받기까지</span>
+          <b data-value="time"></b>
+        </div>
+        <div class="row" data-basket-row hidden>
+          <span>재료를 처음부터 모두 살 때</span>
+          <b data-value="basket"></b>
+        </div>
+        <p data-value="note"></p>
+        <p>내가 고른 범위는 <strong data-value="price"></strong>. <span data-value="guess"></span></p>
+      </div>
+      <button class="action" data-next="0">다시 시작하기</button>
+    </template>
+
+    <!-- 반복해서 사용하는 비용 항목과 이전 버튼 -->
+    <template id="cost-row">
+      <div class="row"><span></span><b></b></div>
+    </template>
+    <template id="back-button">
+      <button class="back" data-back>← 이전</button>
+    </template>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
