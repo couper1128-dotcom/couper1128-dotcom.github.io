@@ -453,11 +453,11 @@ body:has(#window[hidden]) { display: grid; place-items: center; }
   background-repeat: no-repeat;
 }
 
-.meal-art.art-0 { background-image: url("../images/김치볶음밥 2.png"); }
-.meal-art.art-1 { background-image: url("../images/파스타 2.png"); }
-.meal-art.art-2 { background-image: url("../images/돈가스 2.png"); }
+.meal-art.art-0 { background-image: url("../images/kimchi-rice.png"); }
+.meal-art.art-1 { background-image: url("../images/pasta.png"); }
+.meal-art.art-2 { background-image: url("../images/pork-cutlet.png"); }
 
-.method-options .method-art-0 { background-image: url("../images/요리.png"); }
-.method-options .method-art-1 { background-image: url("../images/편의점.png"); }
-.method-options .method-art-2 { background-image: url("../images/배달.png"); }
-.method-options .method-art-3 { background-image: url("../images/식당.png"); }
+.method-options .method-art-0 { background-image: url("../images/home-cooking.png"); }
+.method-options .method-art-1 { background-image: url("../images/convenience-store.png"); }
+.method-options .method-art-2 { background-image: url("../images/delivery.png"); }
+.method-options .method-art-3 { background-image: url("../images/restaurant.png"); }
